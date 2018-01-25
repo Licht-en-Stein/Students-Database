@@ -45,7 +45,7 @@ router.post('/api/student', student.create);
 router.put('/api/student/:id', student.update);
 
 // delete a student
-router.delete('/api/student:id', student.delete);
+router.delete('/api/student/:id', student.delete);
 
 // web
 router.get('/', (req, res) => {

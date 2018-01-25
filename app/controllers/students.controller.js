@@ -11,13 +11,13 @@ exports.findAll = (req, res) => {
 
 // read statement one
 exports.find = (req, res) => {
-    Student.findById([req.params.id], (err, data) => {
+    Student.findById(req.params.studentId, (err, student) => {
 
-      if (!data) {
+      if (!student) {
         return res.send({ err: 'student not found' });
       }
-      console.log(data);
-      res.send(data);
+      console.log(student);
+      res.send(student);
     });
 };
 
@@ -37,13 +37,13 @@ exports.create = (req, res) => {
 // update statement
 exports.update = (req, res) => {
   
-    Student.findById([req.params.id], (err, data) => {
-      if (!data) {
+    Student.findById(req.params.studentId, (err, student) => {
+      if (!student) {
         return res.send({ err: 'student not found' });
       }
       // check all params that are set in req.body and attach/overwrite the student object
       for (attr in req.body) {
-        student[attr] = req.body[attr];
+        Student[attr] = req.body[attr];
       }
       student.save((err) => {
         if (err) {
@@ -51,16 +51,15 @@ exports.update = (req, res) => {
         }
 
         console.log('student has been updated successfully');
-        return res.send(data);
+        return res.send(student);
       });
-    })
+    });
 };
 
 // delete statement
 exports.delete = (req, res) => {
-  
-    Student.findById([req.params.id], (err, data) => {
-      if (!data) {
+    Student.findById(req.params.id, (err, student) => {
+      if (!student) {
         return res.send({ err: 'student not found' });
       }
       student.remove((err) => {
@@ -68,7 +67,7 @@ exports.delete = (req, res) => {
           return res.send(err);
         }
         console.log('student deleted');
-        return res.send(data);
+        return res.send(student);
       });
     });
 };
