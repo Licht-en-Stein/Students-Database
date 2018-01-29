@@ -11,7 +11,7 @@ exports.findAll = (req, res) => {
 
 // read statement one
 exports.find = (req, res) => {
-    Student.findById(req.params.studentId, (err, student) => {
+    Student.findById(req.params.id, (err, student) => {
 
       if (!student) {
         return res.send({ err: 'student not found' });
@@ -37,7 +37,7 @@ exports.create = (req, res) => {
 // update statement
 exports.update = (req, res) => {
   
-    Student.findById(req.params.studentId, (err, student) => {
+    Student.findById(req.params.id, (err, student) => {
       if (!student) {
         return res.send({ err: 'student not found' });
       }
