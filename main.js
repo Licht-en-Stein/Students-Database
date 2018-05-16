@@ -55,5 +55,5 @@ router.get('/', (req, res) => {
 // port listen
 app.listen(9090, (err) => {
   if (err) throw err;
-  console.log('Server started on port 9090');
+  console.error('Server started on port 9090');
 });
